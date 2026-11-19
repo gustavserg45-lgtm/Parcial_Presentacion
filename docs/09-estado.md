@@ -14,7 +14,7 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | Seguridad | EN PROGRESO | Firewalld activo y SELinux deshabilitado según el preflight. `.env` local con permisos 600. La verificación confirmó que MariaDB no publica puertos. |
 | Publicación HTTP | VALIDADO | Fedora publica `8083->80` para Laravel y `8084->80` para Moodle. Verificación local HTTP 200 en ambos servicios. |
 | Acceso LAN | PENDIENTE | Preflight vio 10.0.2.15 y 192.168.56.103. Falta comprobar desde un segundo dispositivo. |
-| Backup y restauración | PENDIENTE | Falta respaldo y prueba en un destino aislado. |
+| Backup y restauración | VALIDADO | `scripts/backup-stack.sh` creó dumps de ambas DB, `moodledata` y código. `scripts/verify-restore.sh` restauró los dumps en bases temporales con 2 y 490 tablas, y validó los archivos. |
 | Informe APA, PDF, OVA | PENDIENTE | Requieren evidencias finales y acceso al host de VirtualBox para la exportación. |
 
 ## Bitácora UTC
@@ -30,6 +30,8 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | 21:21:04 | Verificación técnica interna PASS. Laravel 13.43.0, Moodle 5.2.5+, MariaDB 11.8.9 y aislamiento de DB confirmados. Los puertos todavía no eran accesibles porque las aplicaciones sólo estaban conectadas a redes internas. |
 | 21:21:51 | Persistencia PASS tras recreación de contenedores sin `-v`. |
 | 21:27:03 | Se añadieron redes públicas separadas para las aplicaciones, manteniendo las bases únicamente en redes internas. Laravel respondió HTTP 200 en 8083 y Moodle HTTP 200 en 8084. |
+| 21:31:17 | Backup PASS: dumps SQL, moodledata y código del portal creados. |
+| 21:31:50 | Restauración PASS en bases temporales aisladas. No se borraron volúmenes ni bases de datos originales. |
 
 Los logs de ejecución se guardan en `artifacts/runtime/` y las evidencias de prueba en `artifacts/evidence/`, con sello UTC. El preflight completo de las 21:02:30 UTC quedó copiado como `20261119T210230Z-E01-fedora.log`.
 
