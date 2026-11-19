@@ -21,6 +21,17 @@ E10-01-estado-final.png
 
 No capturar contraseñas, tokens, `.env`, cookies, claves privadas ni salidas que expongan secretos.
 
+## Formato visual solicitado
+
+Las capturas de terminal deben conservar el estilo de una sesión real de PowerShell o Fedora, como en el ejemplo proporcionado por el usuario:
+
+- incluir el prompt, el comando ejecutado y la salida relevante;
+- mostrar suficiente contexto para identificar el host o la sesión;
+- mantener texto nítido, completo y legible;
+- evitar recortes que oculten el comando o el resultado;
+- no incluir passphrases, contraseñas, tokens ni datos sensibles;
+- tomar una sola captura por prueba cuando esa captura sea suficiente.
+
 ## E-01 — Preflight Fedora
 
 **Resultado:** ________________________________________________

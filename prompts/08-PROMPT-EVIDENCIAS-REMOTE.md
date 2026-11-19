@@ -25,6 +25,7 @@ Capturas y logs:
 3. Guardá logs técnicos en artifacts/runtime/.
 4. Para cada evidencia registrá fecha/hora UTC, comando o acción, resultado observado y estado VALIDADO, PENDIENTE o BLOQUEADO.
 5. No tomes capturas decorativas ni repitas capturas que no agreguen prueba.
+6. Las capturas de terminal deben parecerse a una sesión real: incluir prompt, comando y salida relevante, conservar contexto del host, ser nítidas y legibles, y evitar recortes que oculten el comando o el resultado.
 
 Documentación:
 1. Actualizá docs/09-estado.md con resultados reales y pendientes.
