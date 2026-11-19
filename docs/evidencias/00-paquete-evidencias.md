@@ -1,16 +1,35 @@
 # Paquete consolidado de evidencias
 
-Este documento reúne los espacios de captura para pegarlos aquí o trasladarlos al informe final. Solo se completa con resultados reales; no se deben usar imágenes simuladas.
+Este documento es una plantilla para reunir únicamente evidencias reales del despliegue. El chat remoto debe tomar capturas solo después de que cada resultado haya sido comprobado y debe guardarlas en `artifacts/evidence/<YYYY-MM-DD>/`. No se deben crear imágenes simuladas ni capturas decorativas.
+
+## Convención de archivos
+
+Usar nombres cortos y ordenables:
+
+```text
+E01-01-preflight.png
+E02-01-servicios-http.png
+E03-01-moodle-curso.png
+E04-01-persistencia.png
+E05-01-backup-restore.png
+E06-01-puertos-seguridad.png
+E07-01-laravel-crud.png
+E08-01-reinicio.png
+E09-01-acceso-lan.png
+E10-01-estado-final.png
+```
+
+No capturar contraseñas, tokens, `.env`, cookies, claves privadas ni salidas que expongan secretos.
 
 ## E-01 — Preflight Fedora
 
 **Resultado:** ________________________________________________
 
-**Fecha/hora:** ______________________________________________
+**Fecha/hora UTC:** ___________________________________________
 
-**Captura:**
+**Evidencia mínima:** versión de Fedora, recursos, Docker, Compose y red.
 
-> Pegar aquí la captura del comando `bash scripts/preflight-fedora.sh`.
+**Captura:** `[PEGAR E01-01-preflight.png AQUÍ]`
 
 ## E-02 — Primer arranque
 
@@ -18,9 +37,9 @@ Este documento reúne los espacios de captura para pegarlos aquí o trasladarlos
 
 **Servicios observados:** _____________________________________
 
-**Captura:**
+**Evidencia mínima:** `docker compose ps` y respuestas HTTP comprobadas.
 
-> Pegar aquí `docker compose ps` y las respuestas HTTP comprobadas.
+**Captura:** `[PEGAR E02-01-servicios-http.png AQUÍ]`
 
 ## E-03 — Moodle configurado
 
@@ -28,9 +47,9 @@ Este documento reúne los espacios de captura para pegarlos aquí o trasladarlos
 
 **Roles probados:** __________________________________________
 
-**Captura:**
+**Evidencia mínima:** sitio, curso, actividad y roles; solo las pantallas necesarias.
 
-> Pegar aquí las pantallas de sitio, curso, actividad, foro y roles.
+**Captura:** `[PEGAR E03-01-moodle-curso.png AQUÍ]`
 
 ## E-04 — Persistencia
 
@@ -38,9 +57,9 @@ Este documento reúne los espacios de captura para pegarlos aquí o trasladarlos
 
 **Resultado:** ________________________________________________
 
-**Captura:**
+**Evidencia mínima:** estado antes y después de recrear contenedores sin borrar volúmenes.
 
-> Pegar aquí el estado antes/después de recrear sin borrar volúmenes.
+**Captura:** `[PEGAR E04-01-persistencia.png AQUÍ]`
 
 ## E-05 — Backup y restauración
 
@@ -48,9 +67,9 @@ Este documento reúne los espacios de captura para pegarlos aquí o trasladarlos
 
 **Restauración comprobada:** _________________________________
 
-**Captura:**
+**Evidencia mínima:** comandos, tamaños y resultado sin secretos.
 
-> Pegar aquí comandos, tamaños y resultado de restauración sin secretos.
+**Captura:** `[PEGAR E05-01-backup-restore.png AQUÍ]`
 
 ## E-06 — Seguridad de red
 
@@ -58,7 +77,45 @@ Este documento reúne los espacios de captura para pegarlos aquí o trasladarlos
 
 **Bases no expuestas:** ______________________________________
 
-**Captura:**
+**Evidencia mínima:** puertos publicados y comprobación desde la red de laboratorio.
 
-> Pegar aquí la evidencia de puertos y la comprobación desde LAN.
+**Captura:** `[PEGAR E06-01-puertos-seguridad.png AQUÍ]`
+
+## E-07 — Laravel y CRUD
+
+**Rutas/operaciones comprobadas:** ____________________________
+
+**Resultado:** ________________________________________________
+
+**Captura:** `[PEGAR E07-01-laravel-crud.png AQUÍ]`
+
+## E-08 — Reinicio y recuperación
+
+**Prueba realizada:** _________________________________________
+
+**Resultado:** ________________________________________________
+
+**Captura:** `[PEGAR E08-01-reinicio.png AQUÍ]`
+
+## E-09 — Acceso LAN
+
+**URL/IP utilizada:** _________________________________________
+
+**Dispositivo o cliente:** ____________________________________
+
+**Resultado:** ________________________________________________
+
+**Captura:** `[PEGAR E09-01-acceso-lan.png AQUÍ]`
+
+## E-10 — Estado final
+
+**Commit o versión:** _________________________________________
+
+**Pendientes explícitos:** ____________________________________
+
+**Captura:** `[PEGAR E10-01-estado-final.png AQUÍ]`
+
+## Regla de completitud
+
+Una sección solo puede marcarse como `VALIDADO` si existe un resultado observable y su captura o log correspondiente. Si una prueba no se ejecutó, escribir `PENDIENTE` o `BLOQUEADO`; nunca rellenar con un resultado esperado.
 
