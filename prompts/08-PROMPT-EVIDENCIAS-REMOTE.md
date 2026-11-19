@@ -26,6 +26,9 @@ Capturas y logs:
 4. Para cada evidencia registrá fecha/hora UTC, comando o acción, resultado observado y estado VALIDADO, PENDIENTE o BLOQUEADO.
 5. No tomes capturas decorativas ni repitas capturas que no agreguen prueba.
 6. Las capturas de terminal deben parecerse a una sesión real: incluir prompt, comando y salida relevante, conservar contexto del host, ser nítidas y legibles, y evitar recortes que oculten el comando o el resultado.
+7. Guardá una copia de este prompt y de cualquier prompt adicional utilizado en artifacts/prompts/.
+8. Creá o actualizá artifacts/evidence/manifest.csv con: evidencia, prompt, comando/acción, captura, log, commit, timestamp UTC y estado.
+9. Asegurá que cada resultado sea medible y reproducible por otra persona usando el mismo commit, variables no secretas y comandos documentados.
 
 Documentación:
 1. Actualizá docs/09-estado.md con resultados reales y pendientes.

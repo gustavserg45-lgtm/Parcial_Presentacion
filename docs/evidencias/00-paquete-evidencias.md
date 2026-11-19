@@ -130,3 +130,16 @@ Las capturas de terminal deben conservar el estilo de una sesión real de PowerS
 
 Una sección solo puede marcarse como `VALIDADO` si existe un resultado observable y su captura o log correspondiente. Si una prueba no se ejecutó, escribir `PENDIENTE` o `BLOQUEADO`; nunca rellenar con un resultado esperado.
 
+## Reproducibilidad y medición
+
+Para que otra persona pueda repetir la práctica, cada evidencia validada debe conservar:
+
+1. el prompt o instrucción utilizada, guardado en `artifacts/prompts/`;
+2. el commit o versión del repositorio;
+3. el comando exacto o la acción ejecutada;
+4. la fecha y hora UTC;
+5. el resultado observado y su estado;
+6. la captura y el log relacionados.
+
+El archivo `artifacts/evidence/manifest.csv` debe relacionar cada evidencia con su prompt, comando, captura, log, estado y timestamp. No se debe declarar una prueba reproducible si falta alguno de esos elementos.
+
