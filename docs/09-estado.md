@@ -12,6 +12,7 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | Curso y roles Moodle | PENDIENTE | Requiere configurar el curso y probar los permisos. |
 | Persistencia | VALIDADO | `bash scripts/verify-persistence.sh` recreó portal, Moodle y ambas bases sin eliminar volúmenes. La novedad, el sitio y el archivo de `moodledata` se conservaron. Log `artifacts/evidence/20261119T212151Z-persistencia.log`. |
 | Seguridad | EN PROGRESO | Firewalld activo y SELinux deshabilitado según el preflight. `.env` local con permisos 600. La verificación confirmó que MariaDB no publica puertos. |
+| Publicación HTTP | VALIDADO | Fedora publica `8083->80` para Laravel y `8084->80` para Moodle. Verificación local HTTP 200 en ambos servicios. |
 | Acceso LAN | PENDIENTE | Preflight vio 10.0.2.15 y 192.168.56.103. Falta comprobar desde un segundo dispositivo. |
 | Backup y restauración | PENDIENTE | Falta respaldo y prueba en un destino aislado. |
 | Informe APA, PDF, OVA | PENDIENTE | Requieren evidencias finales y acceso al host de VirtualBox para la exportación. |
@@ -26,8 +27,9 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | 21:00:42 | El ZIP se descargó, pero el script buscó `version.php` en la raíz. El listado oficial descargado confirmó `public/version.php` y `admin/cli/install_database.php` en la raíz del código. |
 | 21:02:30 | Moodle se descargó y las imágenes de Moodle y MariaDB se obtuvieron en Fedora. Build de Laravel en curso. |
 | 21:17:48 | La instalación de Moodle terminó. El portal falló inicialmente por ausencia de `portal/artisan`; se añadió el lanzador estándar, se reconstruyó la imagen y las migraciones terminaron correctamente. |
-| 21:21:04 | Verificación técnica PASS. Laravel 13.43.0, Moodle 5.2.5+, MariaDB 11.8.9 y aislamiento de DB confirmados. Los puertos publicados no fueron accesibles desde el propio entorno de ejecución, aunque los servicios respondieron dentro de sus contenedores. |
+| 21:21:04 | Verificación técnica interna PASS. Laravel 13.43.0, Moodle 5.2.5+, MariaDB 11.8.9 y aislamiento de DB confirmados. Los puertos todavía no eran accesibles porque las aplicaciones sólo estaban conectadas a redes internas. |
 | 21:21:51 | Persistencia PASS tras recreación de contenedores sin `-v`. |
+| 21:27:03 | Se añadieron redes públicas separadas para las aplicaciones, manteniendo las bases únicamente en redes internas. Laravel respondió HTTP 200 en 8083 y Moodle HTTP 200 en 8084. |
 
 Los logs de ejecución se guardan en `artifacts/runtime/` y las evidencias de prueba en `artifacts/evidence/`, con sello UTC. El preflight completo de las 21:02:30 UTC quedó copiado como `20261119T210230Z-E01-fedora.log`.
 

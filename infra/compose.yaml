@@ -45,6 +45,7 @@ services:
       - "${PORTAL_HTTP_PORT:-8083}:80"
     networks:
       - portal-private
+      - portal-public
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost/up || exit 1"]
       interval: 15s
@@ -94,6 +95,7 @@ services:
       - moodle-data:/var/www/moodledata
     networks:
       - moodle-private
+      - moodle-public
 
   moodle-cron:
     image: moodlehq/moodle-php-apache:${MOODLE_PHP_IMAGE_TAG:-8.3}
@@ -134,6 +136,8 @@ volumes:
 networks:
   portal-private:
     internal: true
+  portal-public:
   moodle-private:
     internal: true
+  moodle-public:
 
