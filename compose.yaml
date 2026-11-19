@@ -76,11 +76,16 @@ services:
       moodle-db:
         condition: service_healthy
     environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
       MOODLE_DB_HOST: moodle-db
       MOODLE_DB_NAME: ${MOODLE_DB_NAME:?Define MOODLE_DB_NAME en .env}
       MOODLE_DB_USER: ${MOODLE_DB_USER:?Define MOODLE_DB_USER en .env}
       MOODLE_DB_PASSWORD: ${MOODLE_DB_PASSWORD:?Define MOODLE_DB_PASSWORD en .env}
       MOODLE_WWWROOT: ${MOODLE_WWWROOT:-http://localhost:8084}
+      "PHP_INI-max_input_vars": 5000
+      "PHP_INI-memory_limit": 256M
+      "PHP_INI-upload_max_filesize": 64M
+      "PHP_INI-post_max_size": 64M
     ports:
       - "${MOODLE_HTTP_PORT:-8084}:80"
     volumes:
@@ -101,6 +106,10 @@ services:
       MOODLE_DB_USER: ${MOODLE_DB_USER:?Define MOODLE_DB_USER en .env}
       MOODLE_DB_PASSWORD: ${MOODLE_DB_PASSWORD:?Define MOODLE_DB_PASSWORD en .env}
       MOODLE_WWWROOT: ${MOODLE_WWWROOT:-http://localhost:8084}
+      "PHP_INI-max_input_vars": 5000
+      "PHP_INI-memory_limit": 256M
+      "PHP_INI-upload_max_filesize": 64M
+      "PHP_INI-post_max_size": 64M
     volumes:
       - ./.runtime/moodle:/var/www/html:Z
       - moodle-data:/var/www/moodledata

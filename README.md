@@ -11,7 +11,7 @@ La primera iteración prepara el entorno Compose para un portal Laravel y Moodle
 ```bash
 bash scripts/preflight-fedora.sh
 bash scripts/init-env.sh
-bash scripts/bootstrap-moodle.sh
+bash scripts/install-stack.sh
 ```
 
 El primer comando de preparación normalmente debe ser `bash scripts/preflight-fedora.sh`; no instala ni modifica el host. Revisá `docs/09-estado.md` y `docs/10-flujo-codex-powershell.md` antes de iniciar contenedores.

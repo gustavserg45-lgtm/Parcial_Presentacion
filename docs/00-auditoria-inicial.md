@@ -8,6 +8,8 @@ Se leyó completamente `AGENTS.md` y `README.md`. El repositorio clonado desde G
 
 Por lo tanto, el prompt maestro, los requisitos del proyecto, la plantilla APA, el protocolo de evidencias y el flujo Codex/PowerShell referenciados por `AGENTS.md` no pudieron leerse porque no fueron publicados en este checkout. No se inventan sus contenidos ni se marca ninguna validación académica como completada.
 
+La comprobación local de acceso a Fedora tampoco encontró un canal directo: no hay configuración SSH ni `VBoxManage` disponible para controlar la VM desde este entorno. Fedora debe validarse mediante el comando que ejecute el usuario en la VM.
+
 ## Decisión provisional
 
 Se inicia únicamente el esqueleto reproducible de infraestructura pedido por el usuario: Compose con redes privadas, dos bases MariaDB aisladas, portal Laravel y MoodleHQ. La personalización académica de Moodle, las 20 secciones del informe y las evidencias finales quedan pendientes de los documentos fuente.

@@ -13,3 +13,5 @@ No se generaron capturas en esta fase. Solo se debe capturar cuando el resultado
 
 Los logs completos se conservarán en `artifacts/` sin contraseñas. Antes de entregar se revisará que ninguna captura o salida incluya secretos.
 
+La plantilla consolidada para pegar capturas está en `docs/evidencias/00-paquete-evidencias.md`.
+
