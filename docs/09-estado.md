@@ -7,7 +7,7 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | Fedora y recursos | VALIDADO | Fedora 44, kernel 6.19.10-300.fc44.x86_64, 2 CPU, 1.9 GiB de RAM y 16 GiB libres al inicio del despliegue. Evidencia E01. |
 | Docker y Compose | VALIDADO | Cliente y daemon 29.10.0, Compose v5.8.0, overlayfs y cgroup v2. Evidencia E01. |
 | Configuración Compose | VALIDADO | `docker compose --env-file .env -f infra/compose.yaml config --quiet` correcto. Sólo el portal y Moodle declaran puertos publicados. |
-| Portal Laravel y bases | VALIDADO | Laravel 13.43.0 responde internamente, migró `news` y portal-db está saludable con MariaDB 11.8.9. |
+| Portal Laravel y bases | VALIDADO | Laravel 13.43.0 respondió HTTP y `scripts/verify-portal-crud.sh` registró y consultó una novedad desde la interfaz. portal-db está saludable con MariaDB 11.8.9. |
 | Moodle | VALIDADO | Moodle 5.2.5+ instalado, responde internamente con redirección HTTP 303 y moodle-db está saludable. Cron activo. |
 | Curso y roles Moodle | VALIDADO | Curso ID 2, tres unidades, tres páginas, foro, tarea, docente y tres estudiantes ficticios verificados por CLI. |
 | Persistencia | VALIDADO | `bash scripts/verify-persistence.sh` recreó portal, Moodle y ambas bases sin eliminar volúmenes. La novedad, el sitio y el archivo de `moodledata` se conservaron. Log `artifacts/evidence/20261119T212151Z-persistencia.log`. |
@@ -34,6 +34,7 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | 21:31:50 | Restauración PASS en bases temporales aisladas. No se borraron volúmenes ni bases de datos originales. |
 | 21:33:07 | Las dos IP privadas de Fedora respondieron para portal y Moodle. Falta verificación desde otro dispositivo de la LAN. |
 | 21:36:48 | Moodle PASS: curso `Mis primeros pasos en programación`, 3 unidades, 3 páginas, 2 foros, 1 tarea y roles teacher/student comprobados. |
+| 21:38:03 | Laravel CRUD PASS: una novedad ficticia fue insertada con POST y encontrada con GET en `/noticias`. |
 
 Los logs de ejecución se guardan en `artifacts/runtime/` y las evidencias de prueba en `artifacts/evidence/`, con sello UTC. El preflight completo de las 21:02:30 UTC quedó copiado como `20261119T210230Z-E01-fedora.log`.
 
