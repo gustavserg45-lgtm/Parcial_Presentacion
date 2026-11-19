@@ -1,0 +1,31 @@
+:root { color-scheme: light; font-family: Inter, system-ui, sans-serif; color: #172033; background: #f4f7fb; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: #155eef; }
+.site-header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1rem max(1rem, calc((100% - 960px) / 2)); background: #102a43; color: #fff; }
+.site-header a { color: #fff; text-decoration: none; margin-left: 1rem; }
+.brand { font-weight: 800; margin-left: 0 !important; }
+.container { width: min(960px, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0; }
+.hero { padding: 4rem 0; }
+.hero h1, .news-detail h1 { max-width: 760px; font-size: clamp(2.2rem, 5vw, 4.3rem); line-height: 1.02; margin: .35rem 0 1rem; }
+.hero p { max-width: 650px; font-size: 1.2rem; line-height: 1.6; }
+.eyebrow { color: #627d98; font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.button { display: inline-block; padding: .75rem 1.1rem; border-radius: .5rem; background: #155eef; color: white; text-decoration: none; font-weight: 700; }
+.button.secondary { background: #d9e2ec; color: #102a43; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.cards article, .news-item { background: white; border: 1px solid #d9e2ec; border-radius: .8rem; padding: 1.25rem; }
+.cards p, .news-item p { line-height: 1.6; }
+.page-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 1.5rem; }
+.page-heading h1 { margin: 0; font-size: 2.5rem; }
+.news-item { margin-bottom: 1rem; }
+.news-item h2 { margin: .3rem 0; }
+.news-item h2 a { text-decoration: none; }
+.news-detail { max-width: 760px; }
+.lead { font-size: 1.25rem; line-height: 1.6; }
+.prose { margin: 2rem 0; line-height: 1.8; }
+.notice { padding: 1rem; border-radius: .5rem; background: #e3fcef; color: #0b6b47; }
+.notice.error { background: #ffebe6; color: #9b2c2c; }
+.empty { color: #627d98; }
+@media (max-width: 680px) { .site-header { align-items: flex-start; flex-direction: column; } .site-header a { margin-left: 0; margin-right: 1rem; } .cards { grid-template-columns: 1fr; } }
+

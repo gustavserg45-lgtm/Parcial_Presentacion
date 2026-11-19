@@ -1,0 +1,12 @@
+.git
+.env
+.runtime
+artifacts
+vendor
+node_modules
+storage/logs
+tests
+docs
+scripts
+README.md
+
