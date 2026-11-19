@@ -10,6 +10,8 @@ Por lo tanto, el prompt maestro, los requisitos del proyecto, la plantilla APA, 
 
 La comprobación local de acceso a Fedora tampoco encontró un canal directo: no hay configuración SSH ni `VBoxManage` disponible para controlar la VM desde este entorno. Fedora debe validarse mediante el comando que ejecute el usuario en la VM.
 
+El primer resultado manual de la VM confirma que Fedora 44 está operativo, pero Docker aún no está instalado y el script se lanzó desde `/root`, no desde el checkout del proyecto. Por eso todavía no existe evidencia E-01 del script oficial.
+
 ## Decisión provisional
 
 Se inicia únicamente el esqueleto reproducible de infraestructura pedido por el usuario: Compose con redes privadas, dos bases MariaDB aisladas, portal Laravel y MoodleHQ. La personalización académica de Moodle, las 20 secciones del informe y las evidencias finales quedan pendientes de los documentos fuente.
