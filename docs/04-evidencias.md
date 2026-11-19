@@ -1,6 +1,6 @@
 # Protocolo de evidencias mínimas — sólo capturas imprescindibles
 
-**Regla:** Codex debe avisar con `📷 TOMAR EVIDENCIA E##` **después de validar un resultado real**, especificando comando/ventana y archivo final, no después de cada comando. Si la prueba falla: registrar error en logs/estado, pero no inventar la captura de éxito. Ocultar contraseñas, `.env`, tokens, datos privados y direcciones públicas.
+**Regla:** cada checkpoint aprobado debe tener una captura de pantalla real (`.png` o `.jpg`) además del log de texto. Codex debe avisar con `📷 TOMAR EVIDENCIA E##` **después de validar un resultado real**, especificando comando/ventana y archivo final, no después de cada comando. Si la prueba falla: registrar error en logs/estado, pero no inventar la captura de éxito. Ocultar contraseñas, `.env`, tokens, datos privados y direcciones públicas.
 
 | Código | Cuándo hacer captura | Qué debe verse (una captura si cabe) | Guardar como |
 |---|---|---|---|
@@ -15,7 +15,7 @@
 | E09 | Al verificar acceso LAN | Otro dispositivo accede a Moodle y Laravel por IP de la VM | `evidencias/E09-red-local.png` |
 | E10 | Exportar VM y preparar entrega | OVA exportada en host, tamaño y archivos finales presentes | `evidencias/E10-entrega.png` |
 
-Las capturas son sugerencias mínimas: el docente pide procedimiento, resultado y evidencia para cada prueba, por lo que los **logs/textos de comando** pueden complementar capturas. Algunas evidencias de ambos sistemas pueden requerir más de una captura. Sólo usuario puede obtener pruebas visuales reales de su entorno.
+Las capturas son entregables obligatorios de cada checkpoint. Deben mostrar la ventana real de PowerShell, terminal Fedora, navegador o VirtualBox donde se vea el comando o pantalla y el resultado. Los logs/textos de comando complementan la imagen y permiten revisar la fecha UTC. La imagen de ejemplo de configuración de `ssh-agent` sólo ilustra el formato de una captura. No cuenta como evidencia de San Luquitas Digital porque no demuestra una prueba de este proyecto. Algunas evidencias de ambos sistemas pueden requerir más de una captura. Sólo el usuario puede obtener pruebas visuales reales de su entorno.
 
 ### Bitácora de prueba
 Para cada caso: fecha/hora, objetivo, comando/acción, resultado esperado, resultado observado, `PASS/FAIL/BLOCKED`, nombre del archivo evidencia. Guardar como `evidencias/registro-pruebas.md` o CSV. Nunca adjuntar credenciales.

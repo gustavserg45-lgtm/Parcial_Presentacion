@@ -9,13 +9,9 @@ if [[ -f "$ENV_FILE" ]]; then
   exit 0
 fi
 
-command -v openssl >/dev/null 2>&1 || {
-  echo "[init-env] Falta openssl; instalalo antes de continuar." >&2
-  exit 1
-}
-
-APP_KEY="base64:$(openssl rand -base64 32 | tr -d '\n')"
-random_secret() { openssl rand -hex 24; }
+# Fedora ya provee el generador del kernel y las utilidades de coreutils.
+APP_KEY="base64:$(head -c 32 /dev/urandom | base64 -w0)"
+random_secret() { od -An -v -tx1 -N24 /dev/urandom | tr -d ' \n'; }
 
 umask 077
 cat >"$ENV_FILE" <<EOF
@@ -29,8 +25,8 @@ PORTAL_HTTP_PORT=8083
 NEWS_ADMIN_TOKEN=$(random_secret)
 MOODLE_ADMIN_PASSWORD=$(random_secret)
 MOODLE_ADMIN_EMAIL=admin@sanluquitas.local
-MOODLE_SITE_FULLNAME=San Luquitas Digital
-MOODLE_SITE_SHORTNAME=San Luquitas
+MOODLE_SITE_FULLNAME="San Luquitas Digital"
+MOODLE_SITE_SHORTNAME="San Luquitas"
 PORTAL_DB_NAME=portal
 PORTAL_DB_USER=portal_app
 PORTAL_DB_PASSWORD=$(random_secret)

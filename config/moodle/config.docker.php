@@ -1,5 +1,6 @@
 <?php
-defined('MOODLE_INTERNAL') || die();
+global $CFG;
+$CFG = new stdClass();
 
 $CFG->dbtype = 'mariadb';
 $CFG->dblibrary = 'native';

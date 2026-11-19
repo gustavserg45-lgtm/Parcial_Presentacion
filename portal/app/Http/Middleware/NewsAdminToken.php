@@ -11,9 +11,9 @@ class NewsAdminToken
     public function handle(Request $request, Closure $next): Response
     {
         $expected = (string) config('services.news_admin_token');
-        $provided = (string) $request->header('X-Admin-Token');
+        $provided = $request->header('X-Admin-Token') ?? $request->input('password');
 
-        if ($expected === '' || $provided === '' || ! hash_equals($expected, $provided)) {
+        if ($expected === '' || ! is_string($provided) || ! hash_equals($expected, $provided)) {
             abort(403, 'Token de administración inválido.');
         }
 

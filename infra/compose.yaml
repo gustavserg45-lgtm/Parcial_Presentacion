@@ -33,6 +33,7 @@ services:
       APP_DEBUG: ${APP_DEBUG:-false}
       APP_KEY: ${APP_KEY:?Define APP_KEY en .env}
       APP_URL: ${APP_URL:-http://localhost:8083}
+      MOODLE_WWWROOT: ${MOODLE_WWWROOT:-http://localhost:8084}
       DB_CONNECTION: mysql
       DB_HOST: portal-db
       DB_PORT: 3306
@@ -89,7 +90,7 @@ services:
     ports:
       - "${MOODLE_HTTP_PORT:-8084}:80"
     volumes:
-      - ../.runtime/moodle:/var/www/html:Z
+      - ../.runtime/moodle:/var/www/html:ro,z
       - moodle-data:/var/www/moodledata
     networks:
       - moodle-private
@@ -111,10 +112,11 @@ services:
       "PHP_INI-upload_max_filesize": 64M
       "PHP_INI-post_max_size": 64M
     volumes:
-      - ../.runtime/moodle:/var/www/html:Z
+      - ../.runtime/moodle:/var/www/html:ro,z
       - moodle-data:/var/www/moodledata
     networks:
       - moodle-private
+    user: www-data
     entrypoint: ["/bin/sh", "-c"]
     command: >-
       'while true; do

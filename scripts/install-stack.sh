@@ -24,21 +24,13 @@ bash scripts/bootstrap-moodle.sh
 echo "[install-stack] Levantando bases, portal y Moodle."
 docker compose --env-file .env -f infra/compose.yaml up -d --build portal-db moodle-db portal moodle
 
-echo "[install-stack] Esperando que Moodle responda dentro del contenedor."
-for attempt in $(seq 1 30); do
-  if docker compose --env-file .env -f infra/compose.yaml exec -T moodle php -r 'exit(is_dir("/var/www/html/admin/cli") ? 0 : 1);' >/dev/null 2>&1; then
-    break
-  fi
-  if [[ "$attempt" == "30" ]]; then
-    echo "Moodle no quedó disponible; revisar docker compose -f infra/compose.yaml logs moodle." >&2
-    exit 1
-  fi
-  sleep 2
-done
+compose=(docker compose --env-file .env -f infra/compose.yaml)
+echo "[install-stack] Preparando permisos del volumen moodledata."
+"${compose[@]}" exec -T --user root moodle chown www-data:www-data /var/www/moodledata
 
-if ! docker compose --env-file .env -f infra/compose.yaml exec -T moodle php admin/cli/cfg.php --name=release >/dev/null 2>&1; then
+if ! "${compose[@]}" exec -T --user www-data --workdir /var/www/html moodle php admin/cli/cfg.php --name=release >/dev/null 2>&1; then
   echo "[install-stack] Instalando tablas y cuenta administrativa de Moodle."
-  docker compose --env-file .env -f infra/compose.yaml exec -T moodle php admin/cli/install_database.php \
+  "${compose[@]}" exec -T --user www-data --workdir /var/www/html moodle php admin/cli/install_database.php \
     --agree-license \
     --adminpass="$MOODLE_ADMIN_PASSWORD" \
     --adminemail="$MOODLE_ADMIN_EMAIL" \
@@ -47,6 +39,8 @@ if ! docker compose --env-file .env -f infra/compose.yaml exec -T moodle php adm
 else
   echo "[install-stack] Moodle ya estaba instalado; se conserva la base existente."
 fi
+
+"${compose[@]}" up -d moodle-cron
 
 echo "[install-stack] Instalación terminada. Log: $LOG_FILE"
 echo "[install-stack] No contiene contraseñas; revisar igualmente antes de capturar."

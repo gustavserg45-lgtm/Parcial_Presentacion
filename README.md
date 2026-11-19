@@ -1,6 +1,6 @@
 # Hackathon InfraTech — San Luquitas Digital
 
-> **Estado:** kit de arranque y especificaciones. **No** es una implementación ya desplegada ni validada. Codex debe crear y probar los servicios. Fecha de evaluación del enunciado: 19 de noviembre de 2026. El usuario indicó una meta personal de entrega antes de las 14:00 (hora Colombia); no asumir que se cumplió.
+> Revisá [el estado y las pruebas observadas en Fedora](docs/09-estado.md).
 
 ## Objetivo
 Construir en una máquina virtual Fedora (VirtualBox) una infraestructura académica reproducible que aloje simultáneamente:
@@ -14,7 +14,7 @@ Obligatorios: Linux, servidor web, redes y acceso LAN, Docker en Laravel, bases 
 1. Leer **`AGENTS.md`**, **`docs/01-requisitos.md`** y **`docs/02-plan-ejecucion.md`**.
 2. Abrir **`prompts/00-PROMPT-MAESTRO-CODEX.md`** y pegar su contenido en Codex, desde la raíz del repositorio.
 3. Codex empieza con inspección del repositorio y diagnóstico no destructivo, luego implementa por fases y muestra evidencia sólo en puntos específicos.
-4. Los scripts de `scripts/` son de diagnóstico; no hacen despliegue ni demuestran éxito de apps.
+4. Desde la raíz del clon en Fedora, ejecutá `bash scripts/run-fedora.sh` con acceso al daemon de Docker.
 
 ## Trabajo local y sincronización
 - **Fuente de verdad:** repositorio Git; Codex edita archivos versionados y crea cambios revisables.
@@ -47,14 +47,18 @@ Obligatorios: Linux, servidor web, redes y acceso LAN, Docker en Laravel, bases 
 ## Seguridad de este repositorio público
 No subir nombres completos de estudiantes reales, credenciales, archivos `.env`, capturas con datos privados, copias SQL, OVA ni documentos institucionales originales sin revisión de permisos. Los materiales de referencia pueden estar disponibles fuera de GitHub en el equipo local.
 
-## Implementación disponible en este checkout
-
-La implementación técnica ya incluye `infra/compose.yaml`, `portal/`, `config/moodle/`, `.env.example`, `scripts/init-env.sh`, `scripts/bootstrap-moodle.sh`, `scripts/install-stack.sh` y `scripts/verify-stack.sh`. Fedora debe sincronizar este checkout con `git pull` antes de ejecutar scripts.
+## Despliegue y validación en Fedora
 
 ```bash
-bash scripts/init-env.sh
-bash scripts/install-stack.sh
-bash scripts/verify-stack.sh
+bash scripts/run-fedora.sh
 ```
 
-La ejecución real aún debe comprobarse en Fedora y no se debe presentar como validada hasta obtener sus logs.
+El script diagnostica el host, genera `.env` si falta, levanta Compose y verifica Laravel, Moodle y las dos bases MariaDB. El bootstrap descarga Moodle 5.2 y conserva el código descargado en `.runtime/moodle`. Si falla, consultá la fase y el error en `artifacts/runtime/run-fedora-*.log`.
+
+Después de verificar el arranque, ejecutá la prueba de persistencia durante una ventana de mantenimiento. Registra una novedad ficticia, escribe un archivo de prueba en `moodledata` y recrea los contenedores con los volúmenes existentes.
+
+```bash
+bash scripts/verify-persistence.sh
+```
+
+La salida fechada en UTC queda en `artifacts/evidence/`. Para acceder desde otro equipo, configurá `MOODLE_WWWROOT` y `APP_URL` en `.env` con la dirección de Fedora alcanzable desde ese equipo y volvé a ejecutar `bash scripts/run-fedora.sh`. El portal usa `NEWS_ADMIN_TOKEN` al registrar novedades. Consultá el token en el archivo local `.env` y mantenelo fuera de las evidencias.
