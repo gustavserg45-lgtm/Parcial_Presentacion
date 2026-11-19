@@ -3,6 +3,9 @@
 | Fecha | Herramienta | Prompt / archivo | Resultado generado | Validación técnica real | Cambios manuales | Uso final |
 |---|---|---|---|---|---|---|
 | 2026-11-19 | ChatGPT | `prompts/00-PROMPT-MAESTRO-CODEX.md` y kit inicial | Plan, requisitos, instrucciones y scripts de diagnóstico | Revisión textual; despliegue en Fedora **aún pendiente** | Por completar | Planificación y documentación |
+| 2026-11-19 | Codex | Compose, Dockerfile y scripts de Fedora | Stack Moodle/Laravel/MariaDB, redes, persistencia y verificaciones | Ejecución real en Fedora, logs en `artifacts/runtime/` y correcciones de errores observados | Revisiones de rutas Moodle, permisos, puertos y health checks | Infraestructura reproducible |
+| 2026-11-19 | Codex | `scripts/moodle-content.php` y `scripts/verify-moodle-content.php` | Curso, unidades, páginas, foro, tarea y usuarios ficticios | Consulta CLI real contra Moodle 5.2.5, log E03 | Campos obligatorios de actividad ajustados tras errores de DB reales | Configuración del EVA |
+| 2026-11-19 | Codex | `scripts/backup-stack.sh`, `scripts/verify-restore.sh` y `scripts/verify-persistence.sh` | Backup, restauración aislada y persistencia | Dumps e importación real en Fedora, logs E04/E05 | Destinos temporales aislados y sin eliminación de volúmenes | Seguridad, recuperación y pruebas |
 
 **Codex:** añadir registro por cada contribución sustancial: generación de Compose, Laravel, configuración Moodle, backups, prueba, diagramas o documento. No falsear ejecución. No guardar tokens o contraseñas ni datos reales de estudiantes.
 
