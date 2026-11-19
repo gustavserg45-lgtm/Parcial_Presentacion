@@ -13,7 +13,7 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | Persistencia | VALIDADO | `bash scripts/verify-persistence.sh` recreó portal, Moodle y ambas bases sin eliminar volúmenes. La novedad, el sitio y el archivo de `moodledata` se conservaron. Log `artifacts/evidence/20261119T212151Z-persistencia.log`. |
 | Seguridad | EN PROGRESO | Firewalld activo y SELinux deshabilitado según el preflight. `.env` local con permisos 600. La verificación confirmó que MariaDB no publica puertos. |
 | Publicación HTTP | VALIDADO | Fedora publica `8083->80` para Laravel y `8084->80` para Moodle. Verificación local HTTP 200 en ambos servicios. |
-| Acceso LAN | EN PROGRESO | La captura E09 confirma el portal en `192.168.56.103:8083`; falta capturar Moodle y comprobar desde un segundo dispositivo. |
+| Acceso LAN | EN PROGRESO | Se corrigió firewalld agregando permanentemente `8083/tcp` y `8084/tcp` a la zona `public`. Fedora confirma portal HTTP 200 y Moodle HTTP 303 en `192.168.56.103`; falta repetir la captura desde el segundo dispositivo. |
 | Backup y restauración | VALIDADO | `scripts/backup-stack.sh` creó dumps de ambas DB, `moodledata` y código. `scripts/verify-restore.sh` restauró los dumps en bases temporales con 2 y 490 tablas, y validó los archivos. |
 | Informe APA, PDF, OVA | PENDIENTE | La captura E10 documenta que `VBoxManage` no está disponible en el shell Fedora; la exportación OVA requiere ejecutarse en PowerShell/VirtualBox del host. |
 
