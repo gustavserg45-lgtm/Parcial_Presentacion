@@ -1,0 +1,2 @@
+# Prompt 04 — Curso Moodle completo
+Lee AGENTS.md y los requisitos Moodle. Configura Moodle San Luquitas Digital con curso exacto Mis primeros pasos en programación (4.º/5.º); tres secciones: secuencias/patrones, algoritmos cotidianos, Scratch/programación visual; tres recursos, tarea o quiz, foro, admin/docente/tres estudiantes ficticios, matrícula y prueba de permisos. Usa métodos soportados por Moodle; si se requiere configuración UI, proporciona pasos mínimos concretos. Registra pruebas y E04 real.

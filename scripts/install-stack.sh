@@ -22,23 +22,23 @@ echo "[install-stack] Inicializando Moodle desde fuente oficial si falta."
 bash scripts/bootstrap-moodle.sh
 
 echo "[install-stack] Levantando bases, portal y Moodle."
-docker compose up -d --build portal-db moodle-db portal moodle
+docker compose --env-file .env -f infra/compose.yaml up -d --build portal-db moodle-db portal moodle
 
 echo "[install-stack] Esperando que Moodle responda dentro del contenedor."
 for attempt in $(seq 1 30); do
-  if docker compose exec -T moodle php -r 'exit(is_dir("/var/www/html/admin/cli") ? 0 : 1);' >/dev/null 2>&1; then
+  if docker compose --env-file .env -f infra/compose.yaml exec -T moodle php -r 'exit(is_dir("/var/www/html/admin/cli") ? 0 : 1);' >/dev/null 2>&1; then
     break
   fi
   if [[ "$attempt" == "30" ]]; then
-    echo "Moodle no quedó disponible; revisar docker compose logs moodle." >&2
+    echo "Moodle no quedó disponible; revisar docker compose -f infra/compose.yaml logs moodle." >&2
     exit 1
   fi
   sleep 2
 done
 
-if ! docker compose exec -T moodle php admin/cli/cfg.php --name=release >/dev/null 2>&1; then
+if ! docker compose --env-file .env -f infra/compose.yaml exec -T moodle php admin/cli/cfg.php --name=release >/dev/null 2>&1; then
   echo "[install-stack] Instalando tablas y cuenta administrativa de Moodle."
-  docker compose exec -T moodle php admin/cli/install_database.php \
+  docker compose --env-file .env -f infra/compose.yaml exec -T moodle php admin/cli/install_database.php \
     --agree-license \
     --adminpass="$MOODLE_ADMIN_PASSWORD" \
     --adminemail="$MOODLE_ADMIN_EMAIL" \

@@ -1,0 +1,2 @@
+# Prompt 06 — Informe APA + matriz + sustentación
+Lee `docs/05-informe-apa.md`, enunciado y la plantilla de Word. Genera DOCX editable y PDF con exactamente 20 apartados requeridos por profesor, portada UNAB, citas/referencias apropiadas, diagramas, matriz comparativa, tabla de pruebas con resultados observados, registro de prompts IA, capturas proporcionadas (sin inventar), anexos con comandos. Si faltan pruebas, marcarlas PENDIENTE y no atribuir resultados falsos. Preparar guion de sustentación y checklist de OVA.

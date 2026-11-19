@@ -1,13 +1,39 @@
+# Datos y secretos
 .env
 .env.*
 !.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.key
+*.pem
+id_rsa*
+*.sql
+*.sql.gz
+*.dump
+backups/*
+!backups/.gitkeep
+# Logs y evidencias privadas/locales generadas por defecto
+*.log
+# Laravel
+portal-laravel/vendor/
+portal-laravel/node_modules/
+portal-laravel/storage/logs/*
+# Editor/OS
+.DS_Store
+.vscode/
+.idea/
+# Máquinas virtuales y otros artefactos grandes
+*.ova
+*.vdi
+*.vmdk
+*.qcow2
+# Local implementation paths
 .runtime/
 artifacts/
-storage/logs/*.log
+portal/vendor/
+portal/node_modules/
+portal/storage/logs/*.log
 storage/framework/cache/data/*
 storage/framework/sessions/*
 storage/framework/views/*
-vendor/
-node_modules/
-docker-compose.override.yml
-

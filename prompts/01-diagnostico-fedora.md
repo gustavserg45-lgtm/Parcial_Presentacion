@@ -1,0 +1,2 @@
+# Prompt 01 — Diagnóstico Fedora
+Lee AGENTS.md. Identifica versión Fedora/host/VM, memoria, almacenamiento, IP, Docker/Compose, SELinux, firewalld, puertos y herramientas disponibles. Empieza con `scripts/preflight-fedora.sh` sin modificar estado, explica resultados reales y deja preparado `scripts/install-docker-fedora.sh` **idempotente** y apropiado para DNF5 cuando corresponda (confirmar paquete compose plugin). No borres ni reinstales Docker existente sin motivo. Actualiza estado. Notifica E01/E02 sólo tras pruebas reales.

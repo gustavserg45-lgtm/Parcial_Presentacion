@@ -21,7 +21,7 @@ services:
 
   portal:
     build:
-      context: ./portal
+      context: ../portal
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
@@ -89,7 +89,7 @@ services:
     ports:
       - "${MOODLE_HTTP_PORT:-8084}:80"
     volumes:
-      - ./.runtime/moodle:/var/www/html:Z
+      - ../.runtime/moodle:/var/www/html:Z
       - moodle-data:/var/www/moodledata
     networks:
       - moodle-private
@@ -111,7 +111,7 @@ services:
       "PHP_INI-upload_max_filesize": 64M
       "PHP_INI-post_max_size": 64M
     volumes:
-      - ./.runtime/moodle:/var/www/html:Z
+      - ../.runtime/moodle:/var/www/html:Z
       - moodle-data:/var/www/moodledata
     networks:
       - moodle-private

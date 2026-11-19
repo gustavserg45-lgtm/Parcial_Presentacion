@@ -1,31 +1,28 @@
-# Estado del proyecto
+# Estado real del proyecto (actualizar con evidencias)
 
-Fecha: 2026-11-19 (America/Bogota)
+Última actualización: 2026-11-19. El usuario proporcionó diagnóstico real de Fedora y Docker.
 
-## Resumen
-
-Fase actual: **EN PROGRESO — Fase 0 auditoría + Fase 1 esqueleto de infraestructura**.
-
-| Área | Estado | Evidencia |
-| --- | --- | --- |
-| Repo y reglas | VALIDADO localmente | `AGENTS.md`, `README.md`, `git ls-tree` |
-| Prompt maestro y requisitos | PENDIENTE | Los archivos referenciados no existen en el checkout |
-| Preflight Fedora | EN PROGRESO | Resultado manual recibido: Fedora 44, 1.9 GiB RAM, 18 GiB libres, Docker ausente; falta ejecutar el script desde el checkout |
-| Compose y redes privadas | EN PROGRESO | `compose.yaml` creado; no ejecutado todavía |
-| Laravel portal | EN PROGRESO | Esqueleto y Dockerfile creados; no construido ni probado |
-| Moodle | EN PROGRESO | Bootstrap/config creados; descarga e instalación pendientes |
-| Scripts de instalación/verificación | EN PROGRESO | `scripts/install-stack.sh` y `scripts/verify-stack.sh`; no ejecutados |
-| Curso y roles Moodle | PENDIENTE | Requiere instalación y requisitos académicos fuente |
-| Pruebas de persistencia/backups | PENDIENTE | Requiere Fedora y servicios funcionando |
-| Informe APA/OVA | BLOQUEADO | Faltan plantilla y requisitos originales; OVA requiere acceso al host VirtualBox |
+| Entregable | Estado | Evidencia / siguiente acción |
+|---|---|---|
+| VM Fedora y acceso | VALIDADO | Fedora 44; hostname servidor-rural-acaceres163; IPs 10.0.2.15 y 192.168.56.103 |
+| Recursos VM | VALIDADO | 2 CPU, 1.9 GiB RAM, 5.9 GiB swap, 17 GiB libres en / |
+| Docker + Compose | VALIDADO | Docker 29.10.0, Compose v5.8.0, daemon active, hello-world correcto |
+| SELinux / firewalld | ATENCIÓN | SELinux aparece Disabled; firewalld active. No deshabilitar firewalld; revisar SELinux antes del despliegue final |
+| Repositorio Fedora | EN PROGRESO | El clon original no tenía los commits de infraestructura; sincronizar después de publicar el merge |
+| Compose y redes privadas | EN PROGRESO | infra/compose.yaml preparado localmente; falta ejecutar en Fedora |
+| Laravel portal y CRUD | EN PROGRESO | Código y Dockerfile preparados; falta build y validación real |
+| Moodle y curso | PENDIENTE | Falta descarga, instalación, curso, roles y actividades |
+| Persistencia | PENDIENTE | Prueba real de recreación sin borrar volúmenes |
+| Seguridad | EN PROGRESO | Bases sin puertos publicados en Compose; revisar SELinux/firewall/permisos en Fedora |
+| Backup y restauración | PENDIENTE | Falta ejecutar respaldo y restauración verificable |
+| Acceso LAN | PENDIENTE | Probar desde otro dispositivo usando la IP de la interfaz adecuada |
+| Documento APA / PDF | PENDIENTE | Redactar con resultados verificables y capturas E01-E10 |
+| OVA e importación | PENDIENTE | Exportar desde VirtualBox host, no desde Fedora |
 
 ## Resultado Fedora recibido
 
-El usuario ejecutó comandos desde `root@servidor-rural-acaceres163` el 2026-11-19. Se observó Fedora 44, IPs `10.0.2.15` y `192.168.56.103`, memoria total de aproximadamente 1.9 GiB, swap de 5.9 GiB y 18 GiB libres en `/`. `docker` no está instalado y `scripts/preflight-fedora.sh` no se encontró porque el comando se ejecutó desde `/root`, fuera del checkout del proyecto.
+El usuario ejecutó el preflight el 2026-11-19 a las 14:20 (-05:00). Fedora 44, kernel 6.19.10-300.fc44.x86_64, Docker 29.10.0, Compose v5.8.0, daemon activo y `hello-world` correcto. La VM tiene 2 CPU, aproximadamente 1.9 GiB RAM, 5.9 GiB swap y 17 GiB libres. El kernel informó un soft lockup de `dockerd` durante la descarga, pero Docker terminó correctamente; se debe vigilar el rendimiento durante el build.
 
-Este resultado es válido como diagnóstico inicial, no como validación del stack. La VM tiene disco suficiente para continuar, pero la memoria es ajustada para construir y ejecutar Moodle, Laravel y dos bases simultáneamente; se vigilarán errores OOM y se recomienda aumentar la RAM a 4 GiB si VirtualBox lo permite.
+El script y la infraestructura no estaban disponibles en el clon Fedora porque la rama remota todavía no contenía los commits locales de Codex. El próximo paso es publicar/integrar los commits y ejecutar `git pull` en Fedora.
 
-## Regla de actualización
-
-Ninguna fila pasa a VALIDADO sin comando, resultado real, fecha y evidencia asociada. La revisión local de archivos no equivale a prueba Fedora.
-
+No cambiar a **VALIDADO** sin resultado observado y evidencia asociada.

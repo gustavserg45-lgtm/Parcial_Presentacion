@@ -17,7 +17,7 @@ exec > >(tee "$LOG_FILE") 2>&1
 echo "San Luquitas Digital — verificación de servicios"
 echo "utc=$STAMP"
 echo "--- compose ps ---"
-docker compose ps
+docker compose --env-file .env -f infra/compose.yaml ps
 
 echo "--- HTTP portal ---"
 curl --fail --silent --show-error --location "http://localhost:${PORTAL_HTTP_PORT:-8083}/up" >/dev/null
@@ -28,10 +28,10 @@ curl --fail --silent --show-error --location "http://localhost:${MOODLE_HTTP_POR
 echo "moodle: HTTP OK"
 
 echo "--- Laravel ---"
-docker compose exec -T portal php artisan about-project
+docker compose --env-file .env -f infra/compose.yaml exec -T portal php artisan about-project
 
 echo "--- Moodle ---"
-docker compose exec -T moodle php admin/cli/cfg.php --name=release
+docker compose --env-file .env -f infra/compose.yaml exec -T moodle php admin/cli/cfg.php --name=release
 
 echo "--- resultado ---"
 echo "Verificación técnica completada. Log: $LOG_FILE"

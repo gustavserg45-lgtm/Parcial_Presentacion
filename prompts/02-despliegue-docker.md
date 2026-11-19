@@ -1,0 +1,2 @@
+# Prompt 02 — Despliegue Moodle + Laravel
+Lee AGENTS.md, requisitos y arquitectura. Construye y valida `infra/compose.yaml`, Dockerfile Laravel y configuración Moodle con versiones comprobadas. Servicio Moodle + DB y Laravel + DB: bases y usuarios distintos, redes internas, volúmenes y cron, healthcheck, sin secretos versionados, SELinux adecuado. Verifica `docker compose config`, levanta y reporta logs/resultado. No confundir contenedor running con instalación Moodle finalizada. Registrar E03 sólo si ambas URLs funcionan.
