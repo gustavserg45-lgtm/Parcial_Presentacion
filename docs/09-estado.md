@@ -13,9 +13,9 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | Persistencia | VALIDADO | `bash scripts/verify-persistence.sh` recreó portal, Moodle y ambas bases sin eliminar volúmenes. La novedad, el sitio y el archivo de `moodledata` se conservaron. Log `artifacts/evidence/20261119T212151Z-persistencia.log`. |
 | Seguridad | EN PROGRESO | Firewalld activo y SELinux deshabilitado según el preflight. `.env` local con permisos 600. La verificación confirmó que MariaDB no publica puertos. |
 | Publicación HTTP | VALIDADO | Fedora publica `8083->80` para Laravel y `8084->80` para Moodle. Verificación local HTTP 200 en ambos servicios. |
-| Acceso LAN | EN PROGRESO | Ambas IP privadas (`10.0.2.15` y `192.168.56.103`) responden desde Fedora. Falta comprobar desde un segundo dispositivo y guardar captura. |
+| Acceso LAN | EN PROGRESO | La captura E09 confirma el portal en `192.168.56.103:8083`; falta capturar Moodle y comprobar desde un segundo dispositivo. |
 | Backup y restauración | VALIDADO | `scripts/backup-stack.sh` creó dumps de ambas DB, `moodledata` y código. `scripts/verify-restore.sh` restauró los dumps en bases temporales con 2 y 490 tablas, y validó los archivos. |
-| Informe APA, PDF, OVA | PENDIENTE | Requieren evidencias finales y acceso al host de VirtualBox para la exportación. |
+| Informe APA, PDF, OVA | PENDIENTE | La captura E10 documenta que `VBoxManage` no está disponible en el shell Fedora; la exportación OVA requiere ejecutarse en PowerShell/VirtualBox del host. |
 
 ## Bitácora UTC
 
@@ -38,4 +38,4 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 
 Los logs de ejecución se guardan en `artifacts/runtime/` y las evidencias de prueba en `artifacts/evidence/`, con sello UTC. El preflight completo de las 21:02:30 UTC quedó copiado como `20261119T210230Z-E01-fedora.log`.
 
-El estándar de capturas de los commits `85463a3` y `7ce3620` se aplicó en Fedora. El prompt reproducible está copiado en `artifacts/prompts/2026-11-19-PROMPT-EVIDENCIAS-REMOTE.md` y `artifacts/evidence/manifest.csv` relaciona E01–E10 con comandos, logs, commit, timestamp UTC y estado. Las pruebas técnicas con log conservan su estado técnico en esta tabla, mientras el manifiesto mantiene la evidencia en `PENDIENTE` cuando falta la captura obligatoria.
+El estándar de capturas de los commits `85463a3` y `7ce3620` se aplicó en Fedora. El prompt reproducible está copiado en `artifacts/prompts/2026-11-19-PROMPT-EVIDENCIAS-REMOTE.md` y `artifacts/evidence/manifest.csv` relaciona E01–E10 con comandos, capturas, logs, commit, timestamp UTC y estado. Las capturas recibidas se copiaron a `artifacts/evidence/2026-11-19/`; E05 queda pendiente por no existir en este checkout el log del timestamp exacto de la captura, E08 por mostrar un reinicio transitorio, E09 por faltar cliente externo y E10 bloqueada por ausencia de `VBoxManage`.
