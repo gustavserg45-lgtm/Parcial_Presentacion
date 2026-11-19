@@ -1,0 +1,2 @@
+# Prompt 03 — Portal institucional Laravel
+Lee AGENTS.md y los mínimos Laravel en `docs/01-requisitos.md`. Crea portal responsive sencillo: inicio/identidad ficticia, información, recursos, enlace a Moodle configurado para IP/puerto accesible desde browser y novedades registrar/listar (actualizar opcional). Usa migraciones, validación server-side, vistas Blade, DB real, pruebas feature y datos de demostración. Evita auth compleja. Demuestra persistencia después de reinicio. Evidencia E05 sólo después de CRUD validado.

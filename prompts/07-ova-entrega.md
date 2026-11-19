@@ -1,0 +1,2 @@
+# Prompt 07 — OVA y entrega
+Lee AGENTS.md y guía de sustentación. Identifica nombre real de VM con `VBoxManage list vms` **en el host Windows/PowerShell**, y verifica apagado limpio, espacio libre para exportación y existencia de contenedores/volúmenes. Genera un comando export OVA apropiado al nombre real, sin asumirlo. Después de exportar, verificar tamaño/integridad e idealmente importación de prueba en VM separada. Preparar instrucciones de importación, acceso LAN y arranque, PDFs finales y resumen veraz de pendientes.

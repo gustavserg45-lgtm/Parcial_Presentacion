@@ -1,0 +1,2 @@
+# Prompt 05 — Seguridad, persistencia y restauración
+Lee AGENTS.md y `docs/06-seguridad-y-backups.md`. Comprueba puertos, red DB interna, usuarios/credenciales, SELinux, firewall, permisos. Diseña scripts seguros de respaldo de Moodle DB+moodledata+config y Laravel DB+files/config; ejecuta restauración de datos ficticios de manera verificable y no destructiva. Prueba recreación de contenedores sin eliminar volúmenes. Documenta comandos, resultado real y E06/E07/E08/E09 cuando correspondan.
