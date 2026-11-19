@@ -9,7 +9,7 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | Configuración Compose | VALIDADO | `docker compose --env-file .env -f infra/compose.yaml config --quiet` correcto. Sólo el portal y Moodle declaran puertos publicados. |
 | Portal Laravel y bases | VALIDADO | Laravel 13.43.0 responde internamente, migró `news` y portal-db está saludable con MariaDB 11.8.9. |
 | Moodle | VALIDADO | Moodle 5.2.5+ instalado, responde internamente con redirección HTTP 303 y moodle-db está saludable. Cron activo. |
-| Curso y roles Moodle | PENDIENTE | Requiere configurar el curso y probar los permisos. |
+| Curso y roles Moodle | VALIDADO | Curso ID 2, tres unidades, tres páginas, foro, tarea, docente y tres estudiantes ficticios verificados por CLI. |
 | Persistencia | VALIDADO | `bash scripts/verify-persistence.sh` recreó portal, Moodle y ambas bases sin eliminar volúmenes. La novedad, el sitio y el archivo de `moodledata` se conservaron. Log `artifacts/evidence/20261119T212151Z-persistencia.log`. |
 | Seguridad | EN PROGRESO | Firewalld activo y SELinux deshabilitado según el preflight. `.env` local con permisos 600. La verificación confirmó que MariaDB no publica puertos. |
 | Publicación HTTP | VALIDADO | Fedora publica `8083->80` para Laravel y `8084->80` para Moodle. Verificación local HTTP 200 en ambos servicios. |
@@ -33,6 +33,7 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | 21:31:17 | Backup PASS: dumps SQL, moodledata y código del portal creados. |
 | 21:31:50 | Restauración PASS en bases temporales aisladas. No se borraron volúmenes ni bases de datos originales. |
 | 21:33:07 | Las dos IP privadas de Fedora respondieron para portal y Moodle. Falta verificación desde otro dispositivo de la LAN. |
+| 21:36:48 | Moodle PASS: curso `Mis primeros pasos en programación`, 3 unidades, 3 páginas, 2 foros, 1 tarea y roles teacher/student comprobados. |
 
 Los logs de ejecución se guardan en `artifacts/runtime/` y las evidencias de prueba en `artifacts/evidence/`, con sello UTC. El preflight completo de las 21:02:30 UTC quedó copiado como `20261119T210230Z-E01-fedora.log`.
 
