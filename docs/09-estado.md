@@ -30,3 +30,5 @@ Fecha de la sesión: 2026-11-19 UTC. Checkout Fedora: `/root/Parcial_Presentacio
 | 21:21:51 | Persistencia PASS tras recreación de contenedores sin `-v`. |
 
 Los logs de ejecución se guardan en `artifacts/runtime/` y las evidencias de prueba en `artifacts/evidence/`, con sello UTC. El preflight completo de las 21:02:30 UTC quedó copiado como `20261119T210230Z-E01-fedora.log`.
+
+El estándar de capturas de los commits `85463a3` y `7ce3620` se aplicó en Fedora. El prompt reproducible está copiado en `artifacts/prompts/2026-11-19-PROMPT-EVIDENCIAS-REMOTE.md` y `artifacts/evidence/manifest.csv` relaciona E01–E10 con comandos, logs, commit, timestamp UTC y estado. Las pruebas técnicas con log conservan su estado técnico en esta tabla, mientras el manifiesto mantiene la evidencia en `PENDIENTE` cuando falta la captura obligatoria.
